@@ -1,0 +1,536 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Instrument+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<style>body{margin:0;background:#F7F3EE;-webkit-font-smoothing:antialiased;} a{color:#8B1E2D;} a:hover{color:#1F1A17;} *{box-sizing:border-box;} input,select,textarea,button{font:inherit;}</style>
+</helmet>
+<div style="font-family:'Instrument Sans',sans-serif; color:#1F1A17; background:#F7F3EE; font-size:17px; line-height:1.6; position:relative; min-height:100vh;">
+
+<header style="position:absolute; top:0; left:0; right:0; z-index:5; display:flex; flex-wrap:wrap; align-items:center; justify-content:space-between; gap:16px 32px; padding:24px clamp(20px,5vw,72px); color:#F7F3EE;">
+  <button onClick="{{ goHome }}" style="background:none; border:0; padding:0; color:#F7F3EE; cursor:pointer; display:flex; align-items:baseline; gap:10px;">
+    <span style="font-family:'Cormorant Garamond',serif; font-size:34px; font-weight:600; letter-spacing:.02em;">1805</span>
+    <span style="font-size:11px; letter-spacing:.28em; text-transform:uppercase;">Photography</span>
+  </button>
+  <nav style="display:flex; flex-wrap:wrap; align-items:center; gap:8px 28px;">
+    <sc-for list="{{ nav }}" as="n" hint-placeholder-count="5">
+      <button onClick="{{ n.go }}" style="background:none; border:0; padding:6px 0; color:#F7F3EE; cursor:pointer; font-size:12px; letter-spacing:.18em; text-transform:uppercase; font-weight:500; border-bottom:2px solid {{ n.bar }};">{{ n.label }}</button>
+    </sc-for>
+    <button onClick="{{ inqGeneral }}" style="background:#8B1E2D; color:#F7F3EE; border:0; border-radius:2px; padding:12px 22px; cursor:pointer; font-size:12px; letter-spacing:.18em; text-transform:uppercase; font-weight:600;" style-hover="background:#741826;">Inquire</button>
+  </nav>
+</header>
+
+<sc-if value="{{ isHome }}" hint-placeholder-val="{{ true }}">
+  <section data-screen-label="Home" style="position:relative; min-height:94vh; display:flex; align-items:flex-end; overflow:hidden; background:#1F1A17; padding-top:clamp(150px,18vw,190px);">
+    <img src="https://images-pw.pixieset.com/site/2k8eLx/lworE5/DSCF7607-ed20a7d2-1500.jpg" alt="Bride in a red and gold lehenga standing in a curtained room" style="position:absolute; inset:0; width:100%; height:100%; object-fit:cover; object-position:center 30%;">
+    <div style="position:absolute; inset:0; background:linear-gradient(to top, rgba(20,15,12,.85) 0%, rgba(20,15,12,.35) 50%, rgba(20,15,12,.1) 72%, rgba(20,15,12,.5) 100%);"></div>
+    <div style="position:relative; padding:0 clamp(20px,5vw,72px) clamp(56px,8vw,104px); max-width:960px; color:#F7F3EE; display:flex; flex-direction:column; gap:22px;">
+      <div style="font-size:12px; letter-spacing:.22em; text-transform:uppercase; color:#E3C27F; font-weight:600;">Punjabi, Sikh and Indian wedding photographer · Vancouver and the Fraser Valley</div>
+      <h1 style="margin:0; font-family:'Cormorant Garamond',serif; font-weight:500; font-size:clamp(52px,8vw,96px); line-height:.98;">The moments between the moments.</h1>
+      <p style="margin:0; font-family:'Cormorant Garamond',serif; font-style:italic; font-size:clamp(21px,2.2vw,26px); line-height:1.35; max-width:620px;">Timeless, emotional wedding and family photography for people who would rather feel their photos than pose for them.</p>
+      <div style="display:flex; flex-wrap:wrap; align-items:center; gap:28px; margin-top:10px;">
+        <button onClick="{{ inqWedding }}" style="background:#8B1E2D; color:#F7F3EE; border:0; border-radius:2px; padding:18px 30px; cursor:pointer; font-size:13px; letter-spacing:.18em; text-transform:uppercase; font-weight:600; white-space:nowrap; flex-shrink:0;" style-hover="background:#741826;">Inquire about your wedding</button>
+        <button onClick="{{ goStories }}" style="background:none; border:0; padding:4px 0; color:#F7F3EE; cursor:pointer; font-size:13px; letter-spacing:.18em; text-transform:uppercase; font-weight:600; white-space:nowrap; flex-shrink:0; text-decoration:underline; text-underline-offset:8px; text-decoration-thickness:1.5px;">See the stories</button>
+      </div>
+    </div>
+  </section>
+
+  <section style="background:#EDE4D8; padding:clamp(80px,11vw,150px) clamp(20px,5vw,72px);">
+    <p style="margin:0 0 0 clamp(0px,12vw,200px); max-width:760px; font-family:'Cormorant Garamond',serif; font-style:italic; font-size:clamp(30px,3.6vw,46px); line-height:1.22; text-wrap:pretty;">Ten years inside Punjabi weddings as a makeup artist. Now I'm behind the camera for them. I know when the tears come before they do.</p>
+  </section>
+
+  <section style="padding:clamp(80px,10vw,140px) 0; display:flex; flex-direction:column; gap:clamp(80px,10vw,140px);">
+    <div style="display:flex; flex-wrap:wrap; align-items:center;">
+      <div style="flex:1 1 560px; min-height:clamp(380px,48vw,640px); position:relative;"><img src="https://images-pw.pixieset.com/site/2k8eLx/698dkO/DSCF2723-7a4bc964-1500.jpg" alt="Groom in a white sherwani walking through the forest" loading="lazy" style="position:absolute; inset:0; width:100%; height:100%; object-fit:cover;"></div>
+      <div style="flex:1 1 360px; padding:40px clamp(20px,5vw,96px); display:flex; flex-direction:column; gap:20px; max-width:620px;">
+        <div style="font-size:12px; letter-spacing:.22em; text-transform:uppercase; color:#8B1E2D; font-weight:600;">01</div>
+        <h2 style="margin:0; font-family:'Cormorant Garamond',serif; font-weight:500; font-size:clamp(40px,4.4vw,56px); line-height:1;">Weddings</h2>
+        <p style="margin:0; font-size:18px; line-height:1.65;">From the Maiyan and Mehndi to the Anand Karaj and the reception, I document every part as it naturally unfolds.</p>
+        <div style="font-size:12px; letter-spacing:.18em; text-transform:uppercase; color:#5a4f47; font-weight:600;">Collections from $TBC</div>
+        <button onClick="{{ goWeddings }}" style="align-self:flex-start; background:none; border:0; padding:4px 0; color:#8B1E2D; cursor:pointer; font-size:13px; letter-spacing:.18em; text-transform:uppercase; font-weight:600; white-space:nowrap; flex-shrink:0; text-decoration:underline; text-underline-offset:8px; text-decoration-thickness:1.5px;">Explore weddings</button>
+      </div>
+    </div>
+    <div style="display:flex; flex-wrap:wrap; flex-direction:row-reverse; align-items:center;">
+      <div style="flex:1 1 560px; min-height:clamp(380px,48vw,640px); position:relative;"><img src="https://images-pw.pixieset.com/site/2k8eLx/yVypzJ/DSCF6630-53200b68-1500.jpg" alt="Couple sitting on a white pickup truck with mountains behind" loading="lazy" style="position:absolute; inset:0; width:100%; height:100%; object-fit:cover;"></div>
+      <div style="flex:1 1 360px; padding:40px clamp(20px,5vw,96px); display:flex; flex-direction:column; gap:20px; max-width:620px;">
+        <div style="font-size:12px; letter-spacing:.22em; text-transform:uppercase; color:#8B1E2D; font-weight:600;">02</div>
+        <h2 style="margin:0; font-family:'Cormorant Garamond',serif; font-weight:500; font-size:clamp(40px,4.4vw,56px); line-height:1;">Engagements &amp; Proposals</h2>
+        <p style="margin:0; font-size:18px; line-height:1.65;">Real laughs, movement and the quiet moments right after you say yes.</p>
+        <div style="font-size:12px; letter-spacing:.18em; text-transform:uppercase; color:#5a4f47; font-weight:600;">Sessions from $TBC</div>
+        <button onClick="{{ goEngagements }}" style="align-self:flex-start; background:none; border:0; padding:4px 0; color:#8B1E2D; cursor:pointer; font-size:13px; letter-spacing:.18em; text-transform:uppercase; font-weight:600; white-space:nowrap; flex-shrink:0; text-decoration:underline; text-underline-offset:8px; text-decoration-thickness:1.5px;">Plan your session</button>
+      </div>
+    </div>
+    <div style="display:flex; flex-wrap:wrap; align-items:center;">
+      <div style="flex:1 1 560px; min-height:clamp(380px,48vw,640px); position:relative;"><img src="https://images-pw.pixieset.com/site/2k8eLx/wkjlX4/DSCF1489-124fd904-1500.jpg" alt="Family in autumn leaves with their toddler" loading="lazy" style="position:absolute; inset:0; width:100%; height:100%; object-fit:cover;"></div>
+      <div style="flex:1 1 360px; padding:40px clamp(20px,5vw,96px); display:flex; flex-direction:column; gap:20px; max-width:620px;">
+        <div style="font-size:12px; letter-spacing:.22em; text-transform:uppercase; color:#8B1E2D; font-weight:600;">03</div>
+        <h2 style="margin:0; font-family:'Cormorant Garamond',serif; font-weight:500; font-size:clamp(40px,4.4vw,56px); line-height:1;">Maternity &amp; Family</h2>
+        <p style="margin:0; font-size:18px; line-height:1.65;">The anticipation before baby arrives and the beautiful chaos after.</p>
+        <div style="font-size:12px; letter-spacing:.18em; text-transform:uppercase; color:#5a4f47; font-weight:600;">Sessions from $TBC</div>
+        <button onClick="{{ goFamily }}" style="align-self:flex-start; background:none; border:0; padding:4px 0; color:#8B1E2D; cursor:pointer; font-size:13px; letter-spacing:.18em; text-transform:uppercase; font-weight:600; white-space:nowrap; flex-shrink:0; text-decoration:underline; text-underline-offset:8px; text-decoration-thickness:1.5px;">Book a session</button>
+      </div>
+    </div>
+  </section>
+
+  <section style="padding:0 clamp(20px,5vw,72px) clamp(80px,10vw,140px); display:flex; flex-wrap:wrap; gap:clamp(40px,6vw,96px); align-items:flex-start;">
+    <div style="flex:1 1 380px; max-width:560px; aspect-ratio:4/5; position:relative;"><img src="https://images-pw.pixieset.com/site/2k8eLx/owXL7n/8T5A4295-d7a31c55-1500.jpg" alt="Manmeet in a brown blazer seated at a gold table" loading="lazy" style="position:absolute; inset:0; width:100%; height:100%; object-fit:cover;"></div>
+    <div style="flex:1 1 360px; max-width:600px; padding-top:clamp(0px,9vw,120px); display:flex; flex-direction:column; gap:24px;">
+      <div style="font-size:12px; letter-spacing:.22em; text-transform:uppercase; color:#8B1E2D; font-weight:600;">Philosophy</div>
+      <h2 style="margin:0; font-family:'Cormorant Garamond',serif; font-weight:500; font-size:clamp(40px,4.4vw,56px); line-height:1.02; text-wrap:pretty;">Timeless storytelling for life's most meaningful moments</h2>
+      <p style="margin:0; font-size:18px; line-height:1.7;">Hi, I'm Manmeet, the heart behind 1805 Photography. I capture the moments you don't even realize are happening, the ones you'll feel the most later. A little messy, deeply meaningful, and always something you'll want to remember.</p>
+      <p style="margin:0; font-family:'Cormorant Garamond',serif; font-style:italic; font-size:28px; line-height:1.3;">The perfect moments aren't the poses. They happen in between them.</p>
+      <button onClick="{{ goAbout }}" style="align-self:flex-start; background:none; border:0; padding:4px 0; color:#8B1E2D; cursor:pointer; font-size:13px; letter-spacing:.18em; text-transform:uppercase; font-weight:600; white-space:nowrap; flex-shrink:0; text-decoration:underline; text-underline-offset:8px; text-decoration-thickness:1.5px;">Meet Manmeet</button>
+    </div>
+  </section>
+
+  <section style="padding:0 clamp(20px,5vw,72px) clamp(80px,10vw,140px); display:flex; flex-direction:column; gap:48px;">
+    <div style="display:flex; flex-wrap:wrap; justify-content:space-between; align-items:flex-end; gap:20px;">
+      <h2 style="margin:0; font-family:'Cormorant Garamond',serif; font-weight:500; font-size:clamp(40px,4.4vw,56px); line-height:1;">Featured stories</h2>
+      <button onClick="{{ goStories }}" style="background:none; border:0; padding:4px 0; color:#8B1E2D; cursor:pointer; font-size:13px; letter-spacing:.18em; text-transform:uppercase; font-weight:600; white-space:nowrap; flex-shrink:0; text-decoration:underline; text-underline-offset:8px; text-decoration-thickness:1.5px;">All stories</button>
+    </div>
+    <div style="display:grid; grid-template-columns:repeat(auto-fit,minmax(min(100%,340px),1fr)); grid-auto-rows:minmax(300px,auto); gap:clamp(16px,2vw,28px);">
+      <sc-for list="{{ featured }}" as="s" hint-placeholder-count="4">
+        <button onClick="{{ goStories }}" style="grid-row:span {{ s.span }}; background:none; border:0; padding:0; text-align:left; cursor:pointer; display:flex; flex-direction:column; gap:14px; color:#1F1A17;">
+          <div style="flex:1; min-height:300px; width:100%; position:relative; overflow:hidden;"><img src="{{ s.img }}" alt="{{ s.alt }}" loading="lazy" style="position:absolute; inset:0; width:100%; height:100%; object-fit:cover; transition:transform .6s;"></div>
+          <div style="font-size:12px; letter-spacing:.2em; text-transform:uppercase; color:#8B1E2D; font-weight:600;">{{ s.cat }}</div>
+          <div style="font-family:'Cormorant Garamond',serif; font-size:28px; line-height:1.15;">{{ s.caption }}</div>
+        </button>
+      </sc-for>
+    </div>
+  </section>
+
+  <section style="background:#EDE4D8; padding:clamp(80px,10vw,140px) clamp(20px,5vw,72px);">
+    <div style="max-width:980px; margin:0 auto; display:flex; flex-direction:column; gap:32px;">
+      <div style="font-size:12px; letter-spacing:.22em; text-transform:uppercase; color:#8B1E2D; font-weight:600;">Love notes</div>
+      <div style="font-family:'Cormorant Garamond',serif; font-size:96px; line-height:.5; color:#B8893B; height:40px;">“</div>
+      <p style="margin:0; font-family:'Cormorant Garamond',serif; font-style:italic; font-size:clamp(28px,3.4vw,42px); line-height:1.25; min-height:3.75em; text-wrap:pretty;">{{ quote.text }}</p>
+      <div style="display:flex; flex-wrap:wrap; justify-content:space-between; align-items:center; gap:20px;">
+        <div style="font-size:13px; letter-spacing:.18em; text-transform:uppercase; font-weight:600;">{{ quote.name }}</div>
+        <div style="display:flex; gap:12px; align-items:center;">
+          <button onClick="{{ prevQuote }}" aria-label="Previous" style="background:#1F1A17; color:#F7F3EE; border:0; width:48px; height:48px; border-radius:2px; cursor:pointer; font-size:18px;">←</button>
+          <span style="font-size:13px; min-width:44px; text-align:center;">{{ quoteCount }}</span>
+          <button onClick="{{ nextQuote }}" aria-label="Next" style="background:#1F1A17; color:#F7F3EE; border:0; width:48px; height:48px; border-radius:2px; cursor:pointer; font-size:18px;">→</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <sc-if value="{{ showSeasonal }}" hint-placeholder-val="{{ true }}">
+    <section style="padding:clamp(80px,10vw,140px) clamp(20px,5vw,72px) clamp(80px,10vw,140px) 0; position:relative; display:flex; flex-wrap:wrap; align-items:center;">
+      <div style="flex:1 1 100%; min-height:clamp(460px,52vw,640px); position:relative; margin-left:clamp(20px,14vw,240px);"><img src="https://images-pw.pixieset.com/site/2k8eLx/wkjlX4/DSCF1489-124fd904-1500.jpg" alt="Family portrait in warm autumn light" loading="lazy" style="position:absolute; inset:0; width:100%; height:100%; object-fit:cover;"></div>
+      <div style="position:absolute; left:0; max-width:min(500px,88%); background:#8B1E2D; color:#F7F3EE; padding:clamp(32px,4vw,56px); display:flex; flex-direction:column; gap:18px;">
+        <div style="font-size:12px; letter-spacing:.22em; text-transform:uppercase; color:#F2D9A8; font-weight:600;">This season</div>
+        <h2 style="margin:0; font-family:'Cormorant Garamond',serif; font-weight:500; font-size:clamp(36px,4vw,52px); line-height:1;">Holiday Minis at Clayton Cottage</h2>
+        <p style="margin:0; font-size:17px; line-height:1.6;">Five vintage-inspired setups, warm, nostalgic and a little unexpected.</p>
+        <div style="font-size:12px; letter-spacing:.18em; text-transform:uppercase; font-weight:600;">$TBC · Dates TBC</div>
+        <button onClick="{{ inqMinis }}" style="align-self:flex-start; background:#F7F3EE; color:#8B1E2D; border:0; border-radius:2px; padding:16px 26px; cursor:pointer; font-size:13px; letter-spacing:.18em; text-transform:uppercase; font-weight:600; white-space:nowrap; flex-shrink:0;">Reserve your spot</button>
+      </div>
+    </section>
+  </sc-if>
+
+  <section style="position:relative; min-height:80vh; display:flex; align-items:center; justify-content:center; overflow:hidden; background:#1F1A17; text-align:center;">
+    <img src="https://images-pw.pixieset.com/site/2k8eLx/4nqjJ1/DSCF1267-a21d8ff6-1500.jpg" alt="Couple sitting together on stone steps" loading="lazy" style="position:absolute; inset:0; width:100%; height:100%; object-fit:cover;">
+    <div style="position:absolute; inset:0; background:rgba(20,15,12,.5);"></div>
+    <div style="position:relative; color:#F7F3EE; padding:80px 20px; display:flex; flex-direction:column; align-items:center; gap:22px;">
+      <h2 style="margin:0; font-family:'Cormorant Garamond',serif; font-weight:500; font-size:clamp(52px,7vw,88px); line-height:1;">Let's connect</h2>
+      <p style="margin:0; font-family:'Cormorant Garamond',serif; font-style:italic; font-size:clamp(22px,2.4vw,28px);">You bring the moments. I'll freeze the good ones.</p>
+      <button onClick="{{ inqGeneral }}" style="margin-top:10px; background:#8B1E2D; color:#F7F3EE; border:0; border-radius:2px; padding:18px 30px; cursor:pointer; font-size:13px; letter-spacing:.18em; text-transform:uppercase; font-weight:600; white-space:nowrap; flex-shrink:0;">Inquire now</button>
+    </div>
+  </section>
+</sc-if>
+
+<sc-if value="{{ isWeddings }}" hint-placeholder-val="{{ false }}">
+  <section data-screen-label="Weddings" style="position:relative; min-height:90vh; display:flex; align-items:flex-end; overflow:hidden; background:#1F1A17; padding-top:clamp(150px,18vw,190px);">
+    <img src="https://images-pw.pixieset.com/site/2k8eLx/698Yq3/DSCF7519-Copy1-232ee004-1500.jpg" alt="Black and white photo of a couple kissing at night" style="position:absolute; inset:0; width:100%; height:100%; object-fit:cover;">
+    <div style="position:absolute; inset:0; background:linear-gradient(to top, rgba(20,15,12,.85) 0%, rgba(20,15,12,.3) 50%, rgba(20,15,12,.1) 72%, rgba(20,15,12,.5) 100%);"></div>
+    <div style="position:relative; padding:0 clamp(20px,5vw,72px) clamp(56px,8vw,104px); max-width:960px; color:#F7F3EE; display:flex; flex-direction:column; gap:22px;">
+      <div style="font-size:12px; letter-spacing:.22em; text-transform:uppercase; color:#E3C27F; font-weight:600;">Weddings</div>
+      <h1 style="margin:0; font-family:'Cormorant Garamond',serif; font-weight:500; font-size:clamp(50px,7.4vw,92px); line-height:.98;">More than one day. A whole whirlwind, captured.</h1>
+      <p style="margin:0; font-family:'Cormorant Garamond',serif; font-style:italic; font-size:clamp(21px,2.2vw,26px); line-height:1.35; max-width:640px;">Punjabi, Sikh and Indian weddings across Vancouver, Surrey, Abbotsford, the Fraser Valley and wherever your celebration takes you.</p>
+      <button onClick="{{ inqWedding }}" style="align-self:flex-start; margin-top:10px; background:#8B1E2D; color:#F7F3EE; border:0; border-radius:2px; padding:18px 30px; cursor:pointer; font-size:13px; letter-spacing:.18em; text-transform:uppercase; font-weight:600; white-space:nowrap; flex-shrink:0;">Check my availability</button>
+    </div>
+  </section>
+
+  <section style="padding:clamp(80px,10vw,140px) clamp(20px,5vw,72px); display:flex; flex-wrap:wrap; gap:clamp(40px,6vw,96px); align-items:flex-start;">
+    <div style="flex:1 1 360px; max-width:580px; padding-top:clamp(0px,6vw,80px); display:flex; flex-direction:column; gap:24px;">
+      <div style="font-size:12px; letter-spacing:.22em; text-transform:uppercase; color:#8B1E2D; font-weight:600;">The approach</div>
+      <h2 style="margin:0; font-family:'Cormorant Garamond',serif; font-weight:500; font-size:clamp(40px,4.4vw,56px); line-height:1.02;">Every tradition, as it naturally unfolds</h2>
+      <p style="margin:0; font-size:18px; line-height:1.7;">Weddings are a beautiful whirlwind of traditions, emotions and family coming together. From the laughter of the Maiyan and Mehndi to the anticipation before the Anand Karaj and the energy of the reception, I document every part of the celebration as it naturally unfolds.</p>
+      <p style="margin:0; font-size:18px; line-height:1.7;">I capture the big moments you expect, along with the quiet in-between ones you might miss in the rush: the happy tears, stolen glances, and all the joy that makes your wedding uniquely yours.</p>
+    </div>
+    <div style="flex:1 1 420px; aspect-ratio:4/5; max-height:820px; position:relative;"><img src="https://images-pw.pixieset.com/site/2k8eLx/698dkO/DSCF2723-7a4bc964-1500.jpg" alt="Groom in a white sherwani walking through the forest" loading="lazy" style="position:absolute; inset:0; width:100%; height:100%; object-fit:cover;"></div>
+  </section>
+
+  <section style="background:#1F1A17; color:#F7F3EE; display:flex; flex-wrap:wrap;">
+    <div style="flex:1 1 480px; min-height:clamp(420px,50vw,720px); position:relative;"><img src="https://images-pw.pixieset.com/site/2k8eLx/XqybjR/DSCF7375-82c053c5-1500.jpg" alt="Bride being dressed in golden light" loading="lazy" style="position:absolute; inset:0; width:100%; height:100%; object-fit:cover;"></div>
+    <div style="flex:1 1 380px; padding:clamp(56px,7vw,110px) clamp(20px,5vw,96px); display:flex; flex-direction:column; justify-content:center; gap:24px; max-width:720px;">
+      <div style="font-size:12px; letter-spacing:.22em; text-transform:uppercase; color:#E3C27F; font-weight:600;">Why a former makeup artist</div>
+      <p style="margin:0; font-family:'Cormorant Garamond',serif; font-size:clamp(28px,3vw,38px); line-height:1.25;">I spent over a decade in the bridal suite as a makeup artist. I know the rhythm of a Punjabi wedding morning, I know when the chunni goes on and when mom cries, and I know how to stay out of the way while catching all of it.</p>
+      <p style="margin:0; font-size:18px; line-height:1.7; color:#D9CFC3;">Your getting-ready photos are the ones I've been preparing for the longest.</p>
+    </div>
+  </section>
+
+  <section style="padding:clamp(80px,10vw,140px) clamp(20px,5vw,72px); display:flex; flex-direction:column; gap:48px;">
+    <h2 style="margin:0; font-family:'Cormorant Garamond',serif; font-weight:500; font-size:clamp(40px,4.4vw,56px); line-height:1;">Coverage</h2>
+    <div style="display:flex; flex-direction:column; gap:8px;">
+      <div style="display:flex; flex-wrap:wrap; gap:8px 48px; align-items:baseline; background:#EDE4D8; padding:32px clamp(20px,3vw,40px);"><span style="font-family:'Cormorant Garamond',serif; font-size:clamp(30px,3vw,40px); flex:0 0 min(100%,380px);">Pre-wedding events</span><span style="font-size:18px; flex:1 1 280px;">Maiyan, Mehndi, Jaggo, Chunni, Sangeet.</span></div>
+      <div style="display:flex; flex-wrap:wrap; gap:8px 48px; align-items:baseline; padding:32px clamp(20px,3vw,40px);"><span style="font-family:'Cormorant Garamond',serif; font-size:clamp(30px,3vw,40px); flex:0 0 min(100%,380px);">Ceremony</span><span style="font-size:18px; flex:1 1 280px;">Anand Karaj at the gurdwara, Hindu ceremonies, civil ceremonies.</span></div>
+      <div style="display:flex; flex-wrap:wrap; gap:8px 48px; align-items:baseline; background:#EDE4D8; padding:32px clamp(20px,3vw,40px);"><span style="font-family:'Cormorant Garamond',serif; font-size:clamp(30px,3vw,40px); flex:0 0 min(100%,380px);">Reception</span><span style="font-size:18px; flex:1 1 280px;">The entrance, the speeches, the dance floor.</span></div>
+      <div style="display:flex; flex-wrap:wrap; gap:8px 48px; align-items:baseline; padding:32px clamp(20px,3vw,40px);"><span style="font-family:'Cormorant Garamond',serif; font-size:clamp(30px,3vw,40px); flex:0 0 min(100%,380px);">Destination</span><span style="font-size:18px; flex:1 1 280px;">If your wedding involves a plane ticket, I'm in.</span></div>
+    </div>
+    <div style="display:flex; flex-wrap:wrap; gap:20px 48px; align-items:center; justify-content:space-between; padding-top:24px;">
+      <p style="margin:0; max-width:620px; font-size:18px; line-height:1.7;">Collections are customized to your vision, venue and the number of events. Most couples book coverage across two to three days. Expedited editing available.</p>
+      <div style="font-family:'Cormorant Garamond',serif; font-size:clamp(30px,3vw,40px);">Wedding collections from $TBC</div>
+    </div>
+  </section>
+
+  <section style="padding-bottom:clamp(80px,10vw,140px);">
+    <div style="display:flex; gap:16px; overflow-x:auto; padding:0 clamp(20px,5vw,72px); scroll-snap-type:x mandatory;">
+      <img src="https://images-pw.pixieset.com/site/2k8eLx/698dkO/DSCF2723-7a4bc964-1500.jpg" alt="Groom walking through the forest" loading="lazy" style="height:clamp(360px,44vw,560px); aspect-ratio:2/3; object-fit:cover; flex-shrink:0; scroll-snap-align:start;">
+      <img src="https://images-pw.pixieset.com/site/2k8eLx/OYMdq5/DSCF1791-f9e82e24-1500.jpg" alt="Bride laughing at her Mehndi" loading="lazy" style="height:clamp(360px,44vw,560px); aspect-ratio:3/2; object-fit:cover; flex-shrink:0; scroll-snap-align:start;">
+      <img src="https://images-pw.pixieset.com/site/2k8eLx/alDLnQ/DSCF5480-c57bf4ba-1500.jpg" alt="Family dressed in pink and teal" loading="lazy" style="height:clamp(360px,44vw,560px); aspect-ratio:2/3; object-fit:cover; flex-shrink:0; scroll-snap-align:start;">
+      <img src="https://images-pw.pixieset.com/site/2k8eLx/XqybjR/DSCF7375-82c053c5-1500.jpg" alt="Bride being dressed in golden light" loading="lazy" style="height:clamp(360px,44vw,560px); aspect-ratio:2/3; object-fit:cover; flex-shrink:0; scroll-snap-align:start;">
+      <img src="https://images-pw.pixieset.com/site/2k8eLx/0ayelk/DSCF5277-a3d22332-1500.jpg" alt="Couple under a floral arch" loading="lazy" style="height:clamp(360px,44vw,560px); aspect-ratio:3/2; object-fit:cover; flex-shrink:0; scroll-snap-align:start;">
+      <img src="https://images-pw.pixieset.com/site/2k8eLx/lworE5/DSCF7607-ed20a7d2-1500.jpg" alt="Bride in a red lehenga" loading="lazy" style="height:clamp(360px,44vw,560px); aspect-ratio:2/3; object-fit:cover; flex-shrink:0; scroll-snap-align:start;">
+    </div>
+  </section>
+
+  <section style="background:#EDE4D8; padding:clamp(80px,10vw,140px) clamp(20px,5vw,72px); display:flex; flex-wrap:wrap; gap:48px clamp(40px,6vw,96px);">
+    <h2 style="margin:0; flex:1 1 280px; font-family:'Cormorant Garamond',serif; font-weight:500; font-size:clamp(40px,4.4vw,56px); line-height:1;">Questions couples ask</h2>
+    <div style="flex:2 1 520px; display:flex; flex-direction:column; gap:6px;">
+      <sc-for list="{{ faqs }}" as="f" hint-placeholder-count="6">
+        <div style="background:#F7F3EE;">
+          <button onClick="{{ f.toggle }}" style="width:100%; display:flex; justify-content:space-between; gap:24px; align-items:center; background:none; border:0; padding:24px 28px; cursor:pointer; text-align:left; color:#1F1A17;">
+            <span style="font-family:'Cormorant Garamond',serif; font-size:26px; line-height:1.2;">{{ f.q }}</span>
+            <span style="font-size:24px; color:#8B1E2D; flex-shrink:0;">{{ f.sign }}</span>
+          </button>
+          <sc-if value="{{ f.open }}" hint-placeholder-val="{{ false }}">
+            <p style="margin:0; padding:0 28px 28px; font-size:17px; line-height:1.7; max-width:680px;">{{ f.a }}</p>
+          </sc-if>
+        </div>
+      </sc-for>
+    </div>
+  </section>
+
+  <section style="position:relative; min-height:70vh; display:flex; align-items:center; justify-content:center; overflow:hidden; background:#1F1A17; text-align:center;">
+    <img src="https://images-pw.pixieset.com/site/2k8eLx/0ayelk/DSCF5277-a3d22332-1500.jpg" alt="Couple under a floral arch" loading="lazy" style="position:absolute; inset:0; width:100%; height:100%; object-fit:cover;">
+    <div style="position:absolute; inset:0; background:rgba(20,15,12,.55);"></div>
+    <div style="position:relative; color:#F7F3EE; padding:80px 20px; max-width:900px; display:flex; flex-direction:column; align-items:center; gap:28px;">
+      <h2 style="margin:0; font-family:'Cormorant Garamond',serif; font-weight:500; font-size:clamp(44px,5.6vw,72px); line-height:1.02;">Let's make memories you'll be obsessed with years from now.</h2>
+      <button onClick="{{ inqWedding }}" style="background:#8B1E2D; color:#F7F3EE; border:0; border-radius:2px; padding:18px 30px; cursor:pointer; font-size:13px; letter-spacing:.18em; text-transform:uppercase; font-weight:600; white-space:nowrap; flex-shrink:0;">Inquire about your wedding</button>
+    </div>
+  </section>
+</sc-if>
+
+<sc-if value="{{ isEngagements }}" hint-placeholder-val="{{ false }}">
+  <section data-screen-label="Engagements" style="position:relative; min-height:90vh; display:flex; align-items:flex-end; overflow:hidden; background:#1F1A17; padding-top:clamp(150px,18vw,190px);">
+    <img src="https://images-pw.pixieset.com/site/2k8eLx/yVypzJ/DSCF6630-53200b68-1500.jpg" alt="Couple on a white pickup truck with mountains behind" style="position:absolute; inset:0; width:100%; height:100%; object-fit:cover;">
+    <div style="position:absolute; inset:0; background:linear-gradient(to top, rgba(20,15,12,.85) 0%, rgba(20,15,12,.3) 50%, rgba(20,15,12,.1) 72%, rgba(20,15,12,.5) 100%);"></div>
+    <div style="position:relative; padding:0 clamp(20px,5vw,72px) clamp(56px,8vw,104px); max-width:900px; color:#F7F3EE; display:flex; flex-direction:column; gap:22px;">
+      <div style="font-size:12px; letter-spacing:.22em; text-transform:uppercase; color:#E3C27F; font-weight:600;">Engagements &amp; Proposals</div>
+      <h1 style="margin:0; font-family:'Cormorant Garamond',serif; font-weight:500; font-size:clamp(52px,8vw,96px); line-height:.98;">Less posing. More you.</h1>
+      <p style="margin:0; font-family:'Cormorant Garamond',serif; font-style:italic; font-size:clamp(21px,2.2vw,26px); line-height:1.35; max-width:620px;">Engagement sessions, surprise proposals and couples photos that feel like the two of you on a good day.</p>
+      <button onClick="{{ inqEngagement }}" style="align-self:flex-start; margin-top:10px; background:#8B1E2D; color:#F7F3EE; border:0; border-radius:2px; padding:18px 30px; cursor:pointer; font-size:13px; letter-spacing:.18em; text-transform:uppercase; font-weight:600; white-space:nowrap; flex-shrink:0;">Plan your session</button>
+    </div>
+  </section>
+
+  <section style="padding:clamp(80px,10vw,140px) clamp(20px,5vw,72px);">
+    <p style="margin:0 0 0 clamp(0px,12vw,200px); max-width:760px; font-family:'Cormorant Garamond',serif; font-size:clamp(28px,3vw,38px); line-height:1.3; text-wrap:pretty;">Whether you're celebrating an engagement, planning a surprise proposal, or simply want photos that capture this season of life together, these sessions are all about connection. Think real laughs, movement and moments that feel natural to you as a couple.</p>
+  </section>
+
+  <section style="display:flex; flex-wrap:wrap; flex-direction:row-reverse; align-items:stretch; background:#EDE4D8;">
+    <div style="flex:1 1 520px; min-height:clamp(420px,48vw,680px); position:relative;"><img src="https://images-pw.pixieset.com/site/2k8eLx/xqrDYr/DSCF1055-3e32bb7e-1500.jpg" alt="Beach proposal lit by candles" loading="lazy" style="position:absolute; inset:0; width:100%; height:100%; object-fit:cover;"></div>
+    <div style="flex:1 1 360px; padding:clamp(56px,7vw,110px) clamp(20px,5vw,96px); display:flex; flex-direction:column; justify-content:center; gap:24px; max-width:680px;">
+      <div style="font-size:12px; letter-spacing:.22em; text-transform:uppercase; color:#8B1E2D; font-weight:600;">Surprise proposals</div>
+      <h2 style="margin:0; font-family:'Cormorant Garamond',serif; font-weight:500; font-size:clamp(40px,4.4vw,56px); line-height:1.02;">Tell me the plan and I'll be hiding in plain sight.</h2>
+      <p style="margin:0; font-size:18px; line-height:1.7;">I've shot proposals on rocky beaches lit by candles and with less than a day's notice. You focus on the question; I'll get the answer.</p>
+    </div>
+  </section>
+
+  <section style="padding:clamp(80px,10vw,140px) clamp(20px,5vw,72px); display:flex; flex-wrap:wrap; gap:48px clamp(40px,6vw,96px);">
+    <div style="flex:1 1 320px; display:flex; flex-direction:column; gap:20px; max-width:480px;">
+      <div style="font-size:12px; letter-spacing:.22em; text-transform:uppercase; color:#8B1E2D; font-weight:600;">The details</div>
+      <div style="font-family:'Cormorant Garamond',serif; font-size:clamp(36px,4vw,52px); line-height:1.05;">Sessions from $TBC</div>
+      <p style="margin:0; font-size:18px; line-height:1.7;">One to two hours, one or two locations, delivered within three to four weeks. Outfit changes welcome.</p>
+      <button onClick="{{ inqEngagement }}" style="align-self:flex-start; margin-top:8px; background:#8B1E2D; color:#F7F3EE; border:0; border-radius:2px; padding:18px 30px; cursor:pointer; font-size:13px; letter-spacing:.18em; text-transform:uppercase; font-weight:600; white-space:nowrap; flex-shrink:0;">Plan your session</button>
+    </div>
+    <div style="flex:2 1 480px; display:flex; flex-direction:column; gap:48px;">
+      <div style="display:flex; flex-direction:column; gap:14px;"><p style="margin:0; font-family:'Cormorant Garamond',serif; font-style:italic; font-size:clamp(24px,2.6vw,32px); line-height:1.3;">“She was so kind and professional and really paid attention to all the little details. The whole process felt easy and actually really fun. When we got the final photos back we were honestly blown away!”</p><div style="font-size:12px; letter-spacing:.18em; text-transform:uppercase; font-weight:600;">Komal &amp; Kirat · Engagement</div></div>
+      <div style="display:flex; flex-direction:column; gap:14px;"><p style="margin:0; font-family:'Cormorant Garamond',serif; font-style:italic; font-size:clamp(24px,2.6vw,32px); line-height:1.3;">“Manmeet did a fantastic job of capturing the special moments during our proposal! She was great to work with and accommodating, even with short notice. The end result was just what we were hoping for.”</p><div style="font-size:12px; letter-spacing:.18em; text-transform:uppercase; font-weight:600;">Jasdeep · Proposal</div></div>
+    </div>
+  </section>
+</sc-if>
+
+<sc-if value="{{ isFamily }}" hint-placeholder-val="{{ false }}">
+  <section data-screen-label="Maternity & Family" style="position:relative; min-height:90vh; display:flex; align-items:flex-end; overflow:hidden; background:#1F1A17; padding-top:clamp(150px,18vw,190px);">
+    <img src="https://images-pw.pixieset.com/site/2k8eLx/RzqWKM/DSCF8166-c2d8bd63-1500.jpg" alt="Pregnant woman kneeling at the edge of a lake" style="position:absolute; inset:0; width:100%; height:100%; object-fit:cover;">
+    <div style="position:absolute; inset:0; background:linear-gradient(to top, rgba(20,15,12,.85) 0%, rgba(20,15,12,.3) 50%, rgba(20,15,12,.1) 72%, rgba(20,15,12,.5) 100%);"></div>
+    <div style="position:relative; padding:0 clamp(20px,5vw,72px) clamp(56px,8vw,104px); max-width:900px; color:#F7F3EE; display:flex; flex-direction:column; gap:22px;">
+      <div style="font-size:12px; letter-spacing:.22em; text-transform:uppercase; color:#E3C27F; font-weight:600;">Maternity &amp; Family</div>
+      <h1 style="margin:0; font-family:'Cormorant Garamond',serif; font-weight:500; font-size:clamp(52px,8vw,96px); line-height:.98;">Chase the kids. I'll keep up.</h1>
+      <p style="margin:0; font-family:'Cormorant Garamond',serif; font-style:italic; font-size:clamp(21px,2.2vw,26px); line-height:1.35; max-width:620px;">Motherhood, maternity and family sessions that feel like a good afternoon, not a photoshoot.</p>
+      <button onClick="{{ inqFamily }}" style="align-self:flex-start; margin-top:10px; background:#8B1E2D; color:#F7F3EE; border:0; border-radius:2px; padding:18px 30px; cursor:pointer; font-size:13px; letter-spacing:.18em; text-transform:uppercase; font-weight:600; white-space:nowrap; flex-shrink:0;">Book a session</button>
+    </div>
+  </section>
+
+  <section style="padding:clamp(80px,10vw,140px) clamp(20px,5vw,72px);">
+    <p style="margin:0 0 0 clamp(0px,12vw,200px); max-width:760px; font-family:'Cormorant Garamond',serif; font-size:clamp(28px,3vw,38px); line-height:1.3; text-wrap:pretty;">From growing families to the season just before your little one arrives, these sessions are guided gently so nothing feels forced. Just real moments, real laughter, and images you'll treasure as the years fly by.</p>
+  </section>
+
+  <section style="display:flex; flex-wrap:wrap; align-items:stretch; background:#1F1A17; color:#F7F3EE;">
+    <div style="flex:1 1 520px; min-height:clamp(420px,48vw,680px); position:relative;"><img src="https://images-pw.pixieset.com/site/2k8eLx/wkjlX4/DSCF1489-124fd904-1500.jpg" alt="Autumn family portrait with a toddler" loading="lazy" style="position:absolute; inset:0; width:100%; height:100%; object-fit:cover;"></div>
+    <div style="flex:1 1 360px; padding:clamp(56px,7vw,110px) clamp(20px,5vw,96px); display:flex; flex-direction:column; justify-content:center; gap:24px; max-width:680px;">
+      <div style="font-size:12px; letter-spacing:.22em; text-transform:uppercase; color:#E3C27F; font-weight:600;">A mom behind the camera</div>
+      <p style="margin:0; font-family:'Cormorant Garamond',serif; font-size:clamp(28px,3vw,38px); line-height:1.25;">It wasn't until I became a mother that I understood how fast it all moves. That's why I started 1805 Photography.</p>
+      <p style="margin:0; font-size:18px; line-height:1.7; color:#D9CFC3;">I shoot families the way I wish someone had shot mine: in between the posed smiles, where the real ones live.</p>
+    </div>
+  </section>
+
+  <section style="padding:clamp(80px,10vw,140px) clamp(20px,5vw,72px); display:flex; flex-direction:column; gap:48px;">
+    <h2 style="margin:0; font-family:'Cormorant Garamond',serif; font-weight:500; font-size:clamp(40px,4.4vw,56px); line-height:1;">Session types</h2>
+    <div style="display:flex; flex-direction:column; gap:8px;">
+      <div style="display:flex; flex-wrap:wrap; gap:8px 48px; align-items:baseline; background:#EDE4D8; padding:32px clamp(20px,3vw,40px);"><span style="font-family:'Cormorant Garamond',serif; font-size:clamp(30px,3vw,40px); flex:0 0 min(100%,320px);">Maternity</span><span style="font-size:18px; flex:1 1 280px;">Studio or outdoor, partner and siblings welcome.</span><span style="font-size:12px; letter-spacing:.18em; text-transform:uppercase; font-weight:600;">From $TBC</span></div>
+      <div style="display:flex; flex-wrap:wrap; gap:8px 48px; align-items:baseline; padding:32px clamp(20px,3vw,40px);"><span style="font-family:'Cormorant Garamond',serif; font-size:clamp(30px,3vw,40px); flex:0 0 min(100%,320px);">Family</span><span style="font-size:18px; flex:1 1 280px;">In-home lifestyle or on location in the Fraser Valley.</span><span style="font-size:12px; letter-spacing:.18em; text-transform:uppercase; font-weight:600;">From $TBC</span></div>
+      <div style="display:flex; flex-wrap:wrap; gap:8px 48px; align-items:baseline; background:#EDE4D8; padding:32px clamp(20px,3vw,40px);"><span style="font-family:'Cormorant Garamond',serif; font-size:clamp(30px,3vw,40px); flex:0 0 min(100%,320px);">Seasonal minis</span><span style="font-size:18px; flex:1 1 280px;">Holiday Minis at Clayton Cottage each fall, spring minis each April.</span><span style="font-size:12px; letter-spacing:.18em; text-transform:uppercase; font-weight:600;">From $TBC</span></div>
+    </div>
+  </section>
+
+  <sc-if value="{{ showSeasonal }}" hint-placeholder-val="{{ true }}">
+    <section style="background:#8B1E2D; color:#F7F3EE; display:flex; flex-wrap:wrap;">
+      <div style="flex:1 1 380px; padding:clamp(56px,7vw,110px) clamp(20px,5vw,96px); display:flex; flex-direction:column; gap:22px; max-width:700px;">
+        <div style="font-size:12px; letter-spacing:.22em; text-transform:uppercase; color:#F2D9A8; font-weight:600;">Holiday Minis · Clayton Cottage</div>
+        <h2 style="margin:0; font-family:'Cormorant Garamond',serif; font-weight:500; font-size:clamp(40px,4.4vw,56px); line-height:1.02;">This year we're doing something a little different.</h2>
+        <p style="margin:0; font-size:18px; line-height:1.7;">Five unique setups including a cozy bedroom scene, all with a vintage, retro-inspired holiday feel. Warm, nostalgic and a little unexpected.</p>
+        <div style="font-size:12px; letter-spacing:.18em; text-transform:uppercase; font-weight:600;">Dates TBC · Price TBC</div>
+        <button onClick="{{ inqMinis }}" style="align-self:flex-start; background:#F7F3EE; color:#8B1E2D; border:0; border-radius:2px; padding:16px 26px; cursor:pointer; font-size:13px; letter-spacing:.18em; text-transform:uppercase; font-weight:600; white-space:nowrap; flex-shrink:0;">Reserve your spot</button>
+      </div>
+      <div style="flex:1 1 420px; min-height:440px; position:relative;"><img src="https://images-pw.pixieset.com/site/2k8eLx/alDLnQ/DSCF5480-c57bf4ba-1500.jpg" alt="Family portrait in pink and teal" loading="lazy" style="position:absolute; inset:0; width:100%; height:100%; object-fit:cover;"></div>
+    </section>
+  </sc-if>
+
+  <section style="padding:clamp(80px,10vw,140px) clamp(20px,5vw,72px); display:flex; flex-wrap:wrap; gap:48px clamp(40px,6vw,96px);">
+    <div style="flex:1 1 380px; display:flex; flex-direction:column; gap:14px;"><p style="margin:0; font-family:'Cormorant Garamond',serif; font-style:italic; font-size:clamp(24px,2.6vw,32px); line-height:1.3;">“If you're looking for a photographer who takes beautiful photos and also makes the whole experience feel relaxed and fun, I can't recommend Manmeet enough. She always manages to capture the most genuine moments.”</p><div style="font-size:12px; letter-spacing:.18em; text-transform:uppercase; font-weight:600;">Sharon &amp; Perry · Family</div></div>
+    <div style="flex:1 1 380px; display:flex; flex-direction:column; gap:14px;"><p style="margin:0; font-family:'Cormorant Garamond',serif; font-style:italic; font-size:clamp(24px,2.6vw,32px); line-height:1.3;">“We have been using her long before we were a family of four. The photos she captures are genuine, beautiful and full of heart. Thank you for giving us these memories.”</p><div style="font-size:12px; letter-spacing:.18em; text-transform:uppercase; font-weight:600;">A family of four · Family</div></div>
+  </section>
+</sc-if>
+
+<sc-if value="{{ isStories }}" hint-placeholder-val="{{ false }}">
+  <section data-screen-label="Stories" style="position:relative; min-height:64vh; display:flex; align-items:flex-end; overflow:hidden; background:#1F1A17; padding-top:clamp(150px,18vw,190px);">
+    <img src="https://images-pw.pixieset.com/site/2k8eLx/alDLnQ/DSCF5480-c57bf4ba-1500.jpg" alt="Family dressed in pink and teal at a wedding" style="position:absolute; inset:0; width:100%; height:100%; object-fit:cover;">
+    <div style="position:absolute; inset:0; background:linear-gradient(to top, rgba(20,15,12,.85) 0%, rgba(20,15,12,.3) 55%, rgba(20,15,12,.5) 100%);"></div>
+    <div style="position:relative; padding:0 clamp(20px,5vw,72px) clamp(48px,6vw,80px); max-width:900px; color:#F7F3EE; display:flex; flex-direction:column; gap:20px;">
+      <div style="font-size:12px; letter-spacing:.22em; text-transform:uppercase; color:#E3C27F; font-weight:600;">Stories</div>
+      <h1 style="margin:0; font-family:'Cormorant Garamond',serif; font-weight:500; font-size:clamp(46px,6.4vw,80px); line-height:1;">A few of the stories I've had the privilege to tell.</h1>
+    </div>
+  </section>
+  <section style="padding:clamp(56px,7vw,96px) clamp(20px,5vw,72px) clamp(80px,10vw,140px); display:flex; flex-direction:column; gap:48px;">
+    <div style="display:flex; flex-wrap:wrap; gap:10px;">
+      <sc-for list="{{ tabs }}" as="t" hint-placeholder-count="5">
+        <button onClick="{{ t.select }}" style="background:{{ t.bg }}; color:{{ t.fg }}; border:0; border-radius:2px; padding:12px 20px; cursor:pointer; font-size:12px; letter-spacing:.16em; text-transform:uppercase; font-weight:600;">{{ t.label }}</button>
+      </sc-for>
+    </div>
+    <div style="display:grid; grid-template-columns:repeat(auto-fill,minmax(min(100%,420px),1fr)); gap:clamp(32px,4vw,56px) clamp(20px,3vw,40px);">
+      <sc-for list="{{ stories }}" as="s" hint-placeholder-count="4">
+        <a href="#" style="text-decoration:none; color:#1F1A17; display:flex; flex-direction:column; gap:14px;">
+          <div style="aspect-ratio:4/5; position:relative; overflow:hidden; background:#EDE4D8;"><img src="{{ s.img }}" alt="{{ s.alt }}" loading="lazy" style="position:absolute; inset:0; width:100%; height:100%; object-fit:cover;"></div>
+          <div style="font-size:12px; letter-spacing:.2em; text-transform:uppercase; color:#8B1E2D; font-weight:600;">{{ s.cat }}</div>
+          <div style="font-family:'Cormorant Garamond',serif; font-size:34px; line-height:1.05;">{{ s.names }}</div>
+          <div style="font-size:16px; color:#5a4f47;">{{ s.caption }}</div>
+        </a>
+      </sc-for>
+    </div>
+  </section>
+</sc-if>
+
+<sc-if value="{{ isAbout }}" hint-placeholder-val="{{ false }}">
+  <section data-screen-label="About" style="position:relative; min-height:90vh; display:flex; align-items:flex-end; overflow:hidden; background:#1F1A17; padding-top:clamp(150px,18vw,190px);">
+    <img src="https://images-pw.pixieset.com/site/2k8eLx/r9Pp1D/8T5A4154-08528d6a-1500.jpg" alt="Manmeet holding her camera beside a white column" style="position:absolute; inset:0; width:100%; height:100%; object-fit:cover; object-position:center 25%;">
+    <div style="position:absolute; inset:0; background:linear-gradient(to top, rgba(20,15,12,.85) 0%, rgba(20,15,12,.3) 50%, rgba(20,15,12,.1) 72%, rgba(20,15,12,.5) 100%);"></div>
+    <div style="position:relative; padding:0 clamp(20px,5vw,72px) clamp(56px,8vw,104px); max-width:900px; color:#F7F3EE; display:flex; flex-direction:column; gap:22px;">
+      <div style="font-size:12px; letter-spacing:.22em; text-transform:uppercase; color:#E3C27F; font-weight:600;">The girl behind the camera</div>
+      <h1 style="margin:0; font-family:'Cormorant Garamond',serif; font-weight:500; font-size:clamp(52px,8vw,96px); line-height:.98;">Meet Manmeet Mandair.</h1>
+      <p style="margin:0; font-family:'Cormorant Garamond',serif; font-style:italic; font-size:clamp(21px,2.2vw,26px); line-height:1.35; max-width:620px;">I'm probably fixing your hair mid-shoot and telling you you look good every five minutes.</p>
+    </div>
+  </section>
+
+  <section style="padding:clamp(80px,10vw,140px) clamp(20px,5vw,72px); display:flex; flex-wrap:wrap; gap:clamp(40px,6vw,96px); align-items:flex-start;">
+    <div style="flex:1 1 380px; max-width:560px; aspect-ratio:4/5; position:relative;"><img src="https://images-pw.pixieset.com/site/2k8eLx/r9PKne/8T5A4965-0b48a427-1500.jpg" alt="Manmeet seated in a chair holding a vintage camera" loading="lazy" style="position:absolute; inset:0; width:100%; height:100%; object-fit:cover;"></div>
+    <div style="flex:1 1 360px; max-width:600px; padding-top:clamp(0px,7vw,100px); display:flex; flex-direction:column; gap:22px;">
+      <p style="margin:0; font-size:18px; line-height:1.75;">For over a decade I worked as a makeup artist in the wedding industry, always close to moments filled with emotion, anticipation and connection. I witnessed countless love stories unfold: the quiet nerves before the ceremony, the joy, the tears, and everything in between.</p>
+      <p style="margin:0; font-size:18px; line-height:1.75;">But it wasn't until I became a mother that I truly understood how quickly time moves. After having my daughter, I found myself wanting to capture every fleeting stage, the tiny details and the everyday moments I never wanted to forget. That desire is what led to 1805 Photography.</p>
+      <p style="margin:0; font-size:18px; line-height:1.75;">Now good light, real feelings and the moments that happen when no one's trying too hard, that's my thing. From popping the question to chasing kids around, I document it all in a way that feels easy, real and completely you.</p>
+    </div>
+  </section>
+
+  <section style="background:#EDE4D8; padding:clamp(80px,10vw,140px) clamp(20px,5vw,72px);">
+    <div style="max-width:1100px; margin:0 auto; display:flex; flex-direction:column; gap:20px;">
+      <div style="font-family:'Cormorant Garamond',serif; font-size:96px; line-height:.5; color:#B8893B; height:40px;">“</div>
+      <p style="margin:0; font-family:'Cormorant Garamond',serif; font-style:italic; font-size:clamp(32px,4.2vw,54px); line-height:1.15; text-wrap:pretty;">Mom life made me sentimental. Travel made me curious. So I picked up a camera and decided to freeze it in time.</p>
+    </div>
+  </section>
+
+  <section style="padding:clamp(64px,8vw,110px) clamp(20px,5vw,72px); display:flex; flex-wrap:wrap; gap:32px clamp(40px,6vw,96px);">
+    <div style="flex:1 1 240px; display:flex; flex-direction:column; gap:8px;"><div style="font-size:12px; letter-spacing:.2em; text-transform:uppercase; color:#8B1E2D; font-weight:600;">Based in</div><div style="font-family:'Cormorant Garamond',serif; font-size:30px;">Surrey, BC</div></div>
+    <div style="flex:1 1 240px; display:flex; flex-direction:column; gap:8px;"><div style="font-size:12px; letter-spacing:.2em; text-transform:uppercase; color:#8B1E2D; font-weight:600;">Serving</div><div style="font-family:'Cormorant Garamond',serif; font-size:30px;">Fraser Valley, Metro Vancouver and destinations worldwide</div></div>
+    <div style="flex:1 1 240px; display:flex; flex-direction:column; gap:8px;"><div style="font-size:12px; letter-spacing:.2em; text-transform:uppercase; color:#8B1E2D; font-weight:600;">Speaks</div><div style="font-family:'Cormorant Garamond',serif; font-size:30px;">Punjabi and English</div></div>
+  </section>
+
+  <section style="background:#1F1A17; color:#F7F3EE; padding:clamp(80px,10vw,140px) clamp(20px,5vw,72px); display:flex; flex-direction:column; align-items:center; gap:28px; text-align:center;">
+    <h2 style="margin:0; font-family:'Cormorant Garamond',serif; font-weight:500; font-size:clamp(48px,6vw,80px); line-height:1;">Looks like we're vibing.</h2>
+    <button onClick="{{ inqGeneral }}" style="background:#8B1E2D; color:#F7F3EE; border:0; border-radius:2px; padding:18px 30px; cursor:pointer; font-size:13px; letter-spacing:.18em; text-transform:uppercase; font-weight:600; white-space:nowrap; flex-shrink:0;">Let's connect</button>
+  </section>
+</sc-if>
+
+<sc-if value="{{ isContact }}" hint-placeholder-val="{{ false }}">
+  <section data-screen-label="Contact" style="position:relative; min-height:72vh; display:flex; align-items:flex-end; overflow:hidden; background:#1F1A17; padding-top:clamp(150px,18vw,190px);">
+    <img src="https://images-pw.pixieset.com/site/2k8eLx/6AbZEj/DSCF6442-Copy1-401be279-1500.jpg" alt="Black and white photo of a couple in an arched doorway" style="position:absolute; inset:0; width:100%; height:100%; object-fit:cover;">
+    <div style="position:absolute; inset:0; background:linear-gradient(to top, rgba(20,15,12,.85) 0%, rgba(20,15,12,.3) 55%, rgba(20,15,12,.5) 100%);"></div>
+    <div style="position:relative; padding:0 clamp(20px,5vw,72px) clamp(48px,7vw,90px); max-width:900px; color:#F7F3EE; display:flex; flex-direction:column; gap:20px;">
+      <div style="font-size:12px; letter-spacing:.22em; text-transform:uppercase; color:#E3C27F; font-weight:600;">Let's begin your story together</div>
+      <h1 style="margin:0; font-family:'Cormorant Garamond',serif; font-weight:500; font-size:clamp(52px,8vw,96px); line-height:.98;">Contact me</h1>
+      <p style="margin:0; font-family:'Cormorant Garamond',serif; font-style:italic; font-size:clamp(21px,2.2vw,26px); line-height:1.35; max-width:640px;">The good stuff starts here. From wedding days to growing families, documenting your story in Vancouver and wherever life takes you.</p>
+    </div>
+  </section>
+
+  <section style="padding:clamp(64px,8vw,120px) clamp(20px,5vw,72px); display:flex; flex-wrap:wrap; gap:56px clamp(40px,6vw,96px); align-items:flex-start;">
+    <div style="flex:2 1 520px; display:flex; flex-direction:column; gap:28px; max-width:760px;">
+      <p style="margin:0; font-family:'Cormorant Garamond',serif; font-size:clamp(26px,2.8vw,34px); line-height:1.25;">I reply to every inquiry within 24 to 48 hours.</p>
+      <sc-if value="{{ sent }}" hint-placeholder-val="{{ false }}">
+        <div style="background:#1F1A17; color:#F7F3EE; padding:40px; display:flex; flex-direction:column; gap:10px;">
+          <div style="font-family:'Cormorant Garamond',serif; font-size:34px;">Thank you. Your message is in.</div>
+          <div style="font-size:16px; color:#D9CFC3;">I'll be in touch within 24 to 48 hours with availability.</div>
+        </div>
+      </sc-if>
+      <sc-if value="{{ notSent }}" hint-placeholder-val="{{ true }}">
+        <form onSubmit="{{ submit }}" style="display:grid; grid-template-columns:repeat(auto-fit,minmax(min(100%,260px),1fr)); gap:20px;">
+          <label style="display:flex; flex-direction:column; gap:8px; font-size:12px; letter-spacing:.16em; text-transform:uppercase; font-weight:600;">Full name<input required type="text" style="background:#EDE4D8; border:0; border-radius:2px; padding:16px; font-size:17px; letter-spacing:0; text-transform:none; color:#1F1A17;"></label>
+          <label style="display:flex; flex-direction:column; gap:8px; font-size:12px; letter-spacing:.16em; text-transform:uppercase; font-weight:600;">Email<input required type="email" style="background:#EDE4D8; border:0; border-radius:2px; padding:16px; font-size:17px; letter-spacing:0; text-transform:none; color:#1F1A17;"></label>
+          <label style="display:flex; flex-direction:column; gap:8px; font-size:12px; letter-spacing:.16em; text-transform:uppercase; font-weight:600;">Phone number<input type="tel" style="background:#EDE4D8; border:0; border-radius:2px; padding:16px; font-size:17px; letter-spacing:0; text-transform:none; color:#1F1A17;"></label>
+          <label style="display:flex; flex-direction:column; gap:8px; font-size:12px; letter-spacing:.16em; text-transform:uppercase; font-weight:600;">Instagram handle (optional)<input type="text" placeholder="@" style="background:#EDE4D8; border:0; border-radius:2px; padding:16px; font-size:17px; letter-spacing:0; text-transform:none; color:#1F1A17;"></label>
+          <label style="display:flex; flex-direction:column; gap:8px; font-size:12px; letter-spacing:.16em; text-transform:uppercase; font-weight:600;">Event or session date<input type="date" style="background:#EDE4D8; border:0; border-radius:2px; padding:16px; font-size:17px; letter-spacing:0; text-transform:none; color:#1F1A17;"></label>
+          <label style="display:flex; flex-direction:column; gap:8px; font-size:12px; letter-spacing:.16em; text-transform:uppercase; font-weight:600;">Type of shoot
+            <select value="{{ shoot }}" onChange="{{ setShoot }}" style="background:#EDE4D8; border:0; border-radius:2px; padding:16px; font-size:17px; letter-spacing:0; text-transform:none; color:#1F1A17;">
+              <option>Wedding</option><option>Engagement</option><option>Proposal</option><option>Maternity</option><option>Family</option><option>Holiday Minis</option><option>Other</option>
+            </select>
+          </label>
+          <label style="grid-column:1 / -1; display:flex; flex-direction:column; gap:8px; font-size:12px; letter-spacing:.16em; text-transform:uppercase; font-weight:600;">Tell me about your day<textarea rows="6" style="background:#EDE4D8; border:0; border-radius:2px; padding:16px; font-size:17px; letter-spacing:0; text-transform:none; color:#1F1A17; resize:vertical;"></textarea></label>
+          <button type="submit" style="justify-self:start; background:#8B1E2D; color:#F7F3EE; border:0; border-radius:2px; padding:18px 34px; cursor:pointer; font-size:13px; letter-spacing:.18em; text-transform:uppercase; font-weight:600; white-space:nowrap; flex-shrink:0;">Send message</button>
+        </form>
+      </sc-if>
+      <p style="margin:0; font-size:16px; line-height:1.7; color:#5a4f47; max-width:600px;">A signed contract and non-refundable deposit confirm your date. Dates are first come, first served, and summer weddings book early.</p>
+    </div>
+    <div style="flex:1 1 280px; background:#EDE4D8; padding:40px; display:flex; flex-direction:column; gap:28px;">
+      <div style="display:flex; flex-direction:column; gap:6px;"><div style="font-size:12px; letter-spacing:.2em; text-transform:uppercase; color:#8B1E2D; font-weight:600;">Email</div><a href="mailto:hello@1805photography.com" style="font-family:'Cormorant Garamond',serif; font-size:26px; color:#1F1A17;">Email TBC</a></div>
+      <div style="display:flex; flex-direction:column; gap:6px;"><div style="font-size:12px; letter-spacing:.2em; text-transform:uppercase; color:#8B1E2D; font-weight:600;">Phone or WhatsApp</div><a href="tel:" style="font-family:'Cormorant Garamond',serif; font-size:26px; color:#1F1A17;">Phone TBC</a></div>
+      <div style="display:flex; flex-direction:column; gap:6px;"><div style="font-size:12px; letter-spacing:.2em; text-transform:uppercase; color:#8B1E2D; font-weight:600;">Instagram</div><a href="https://instagram.com/1805.photography" target="_blank" style="font-family:'Cormorant Garamond',serif; font-size:26px; color:#1F1A17;">@1805.photography</a></div>
+      <div style="display:flex; flex-direction:column; gap:6px;"><div style="font-size:12px; letter-spacing:.2em; text-transform:uppercase; color:#8B1E2D; font-weight:600;">Studio</div><div style="font-family:'Cormorant Garamond',serif; font-size:26px;">Surrey, BC</div></div>
+    </div>
+  </section>
+</sc-if>
+
+<footer style="background:#1F1A17; color:#F7F3EE; padding:clamp(72px,9vw,120px) clamp(20px,5vw,72px) 40px; display:flex; flex-direction:column; gap:64px;">
+  <div style="display:flex; flex-wrap:wrap; gap:48px clamp(40px,6vw,96px);">
+    <div style="flex:2 1 300px; display:flex; flex-direction:column; gap:14px;">
+      <div style="display:flex; align-items:baseline; gap:10px;"><span style="font-family:'Cormorant Garamond',serif; font-size:44px; font-weight:600;">1805</span><span style="font-size:11px; letter-spacing:.28em; text-transform:uppercase;">Photography</span></div>
+      <p style="margin:0; max-width:380px; font-size:16px; line-height:1.7; color:#D9CFC3;">Surrey and the Fraser Valley, serving Metro Vancouver and destinations worldwide.</p>
+    </div>
+    <div style="flex:1 1 180px; display:flex; flex-direction:column; gap:12px; align-items:flex-start;">
+      <div style="font-size:12px; letter-spacing:.2em; text-transform:uppercase; color:#E3C27F; font-weight:600;">Explore</div>
+      <sc-for list="{{ nav }}" as="n" hint-placeholder-count="5">
+        <button onClick="{{ n.go }}" style="background:none; border:0; padding:0; color:#F7F3EE; cursor:pointer; font-size:16px;">{{ n.label }}</button>
+      </sc-for>
+    </div>
+    <div style="flex:1 1 180px; display:flex; flex-direction:column; gap:12px;">
+      <div style="font-size:12px; letter-spacing:.2em; text-transform:uppercase; color:#E3C27F; font-weight:600;">Contact</div>
+      <span style="font-size:16px;">Email TBC</span>
+      <span style="font-size:16px;">Phone TBC</span>
+      <button onClick="{{ inqGeneral }}" style="align-self:flex-start; background:none; border:0; padding:0; color:#F7F3EE; cursor:pointer; font-size:16px; text-decoration:underline; text-underline-offset:6px;">Send an inquiry</button>
+    </div>
+    <div style="flex:1 1 180px; display:flex; flex-direction:column; gap:12px;">
+      <div style="font-size:12px; letter-spacing:.2em; text-transform:uppercase; color:#E3C27F; font-weight:600;">Instagram</div>
+      <a href="https://instagram.com/1805.photography" target="_blank" style="font-size:16px; color:#F7F3EE;">@1805.photography</a>
+    </div>
+  </div>
+  <div style="font-size:13px; color:#A89C90;">© 2026 1805 Photography. All rights reserved.</div>
+</footer>
+
+<sc-if value="{{ showSticky }}" hint-placeholder-val="{{ false }}">
+  <div style="position:fixed; left:0; right:0; bottom:0; z-index:10; background:#1F1A17; padding:12px 16px calc(12px + env(safe-area-inset-bottom));">
+    <button onClick="{{ stickyAction }}" style="width:100%; min-height:52px; background:#8B1E2D; color:#F7F3EE; border:0; border-radius:2px; cursor:pointer; font-size:13px; letter-spacing:.18em; text-transform:uppercase; font-weight:600; white-space:nowrap; flex-shrink:0;">{{ stickyLabel }}</button>
+  </div>
+</sc-if>
+
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;startPage&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;options&quot;:[&quot;Home&quot;,&quot;Weddings&quot;,&quot;Engagements&quot;,&quot;Family&quot;,&quot;Stories&quot;,&quot;About&quot;,&quot;Contact&quot;],&quot;default&quot;:&quot;Home&quot;,&quot;tsType&quot;:&quot;string&quot;},&quot;showSeasonal&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:true,&quot;tsType&quot;:&quot;boolean&quot;},&quot;stickyCta&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:true,&quot;tsType&quot;:&quot;boolean&quot;}}">
+const IMG = 'https://images-pw.pixieset.com/site/2k8eLx/';
+const QUOTES = [
+  { text: 'She was so kind and professional and really paid attention to all the little details. The whole process felt easy and actually really fun. When we got the final photos back we were honestly blown away!', name: 'Komal & Kirat · Engagement' },
+  { text: "She captured so many special moments for my brother's Maiyan. Her candid shots, attention to detail, and bubbly personality blended so naturally with our family. She's always the first person I'd call for photos!", name: 'Kiran Gill · Maiyan' },
+  { text: 'She has a way of making you feel comfortable in front of the camera and always manages to capture the most genuine moments that we\'ll treasure forever.', name: 'Sharon & Perry · Family' }
+];
+const FAQS = [
+  ['Do you travel for destination weddings?', 'Absolutely. I love documenting love stories in new places. Clients cover travel costs outside the Lower Mainland.'],
+  ['How do we book?', "Fill out the contact form with your event details and I'll reply within 24 to 48 hours with availability. A signed contract and non-refundable deposit secure your date."],
+  ['What is your rescheduling policy?', 'Your deposit transfers to a new date pending availability. If a new date cannot be arranged, the deposit remains non-refundable.'],
+  ['When do we get our photos?', 'Wedding galleries are delivered within two to three months through a private online gallery you can view, download and share. Expedited editing is available for an additional fee.'],
+  ['Will all photos be edited?', 'Every image in your final gallery is fully edited in my signature style. Raw files are not provided.'],
+  ['Is there a travel fee?', 'Sessions within the Fraser Valley are included. Outside the Fraser Valley there is a $50 travel fee.']
+];
+const STORIES = [
+  { cat: 'Weddings', names: 'A Sikh wedding in the forest', caption: 'Two days, one forest, every tradition.', img: IMG + '698dkO/DSCF2723-7a4bc964-1500.jpg', alt: 'Groom in a white sherwani in the forest' },
+  { cat: 'Engagements & Proposals', names: "Komal & Kirat's engagement", caption: 'Florals, henna and a lot of laughing.', img: IMG + 'VbvEdy/DSCF5293-91f73dfb-1500.jpg', alt: 'Couple in traditional attire embracing under a floral arch, henna on her hands' },
+  { cat: 'Mehndi & Pre-wedding', names: "Karen's Mehndi", caption: 'Henna, music and the aunties on the dance floor.', img: IMG + 'OYMdq5/DSCF1791-f9e82e24-1500.jpg', alt: 'Bride laughing at her Mehndi' },
+  { cat: 'Maternity & Family', names: "Veerpal's maternity", caption: 'A quiet evening at the lake, just before.', img: IMG + 'RzqWKM/DSCF8166-c2d8bd63-1500.jpg', alt: 'Pregnant woman kneeling at the lake' }
+];
+const TABS = ['All', 'Weddings', 'Engagements & Proposals', 'Mehndi & Pre-wedding', 'Maternity & Family'];
+const NAV = [['Weddings', 'Weddings'], ['Engagements', 'Engagements'], ['Maternity & Family', 'Family'], ['Stories', 'Stories'], ['About', 'About']];
+
+class Component extends DCLogic {
+  state = { page: null, t: 0, faq: -1, filter: 'All', shoot: 'Wedding', sent: false, w: typeof window !== 'undefined' ? window.innerWidth : 1200 };
+  componentDidMount() { this.onR = () => this.setState({ w: window.innerWidth }); window.addEventListener('resize', this.onR); }
+  componentWillUnmount() { window.removeEventListener('resize', this.onR); }
+  go(page, shoot) {
+    this.setState(shoot ? { page, shoot, sent: false } : { page, sent: false });
+    window.scrollTo(0, 0);
+  }
+  renderVals() {
+    const page = this.state.page ?? this.props.startPage ?? 'Home';
+    const showSeasonal = this.props.showSeasonal ?? true;
+    const sticky = (this.props.stickyCta ?? true) && this.state.w < 760;
+    const stickyMap = { Weddings: ['Check my availability', 'Wedding'], Engagements: ['Plan your session', 'Engagement'], Family: ['Book a session', 'Family'] };
+    const st = stickyMap[page];
+    const q = QUOTES[this.state.t];
+    const featured = STORIES.map((s, i) => ({ ...s, caption: s.names, span: i === 0 ? 2 : 1 }));
+    return {
+      isHome: page === 'Home', isWeddings: page === 'Weddings', isEngagements: page === 'Engagements', isFamily: page === 'Family',
+      isStories: page === 'Stories', isAbout: page === 'About', isContact: page === 'Contact',
+      nav: NAV.map(([label, p]) => ({ label, go: () => this.go(p), bar: page === p ? '#E3C27F' : 'transparent' })),
+      goHome: () => this.go('Home'), goWeddings: () => this.go('Weddings'), goEngagements: () => this.go('Engagements'),
+      goFamily: () => this.go('Family'), goStories: () => this.go('Stories'), goAbout: () => this.go('About'),
+      inqGeneral: () => this.go('Contact'), inqWedding: () => this.go('Contact', 'Wedding'), inqEngagement: () => this.go('Contact', 'Engagement'),
+      inqFamily: () => this.go('Contact', 'Family'), inqMinis: () => this.go('Contact', 'Holiday Minis'),
+      quote: q, quoteCount: (this.state.t + 1) + ' / ' + QUOTES.length,
+      prevQuote: () => this.setState(s => ({ t: (s.t + QUOTES.length - 1) % QUOTES.length })),
+      nextQuote: () => this.setState(s => ({ t: (s.t + 1) % QUOTES.length })),
+      featured, showSeasonal,
+      faqs: FAQS.map(([qq, a], i) => ({ q: qq, a, open: this.state.faq === i, sign: this.state.faq === i ? '–' : '+', toggle: () => this.setState(s => ({ faq: s.faq === i ? -1 : i })) })),
+      tabs: TABS.map(label => ({ label, bg: this.state.filter === label ? '#1F1A17' : '#EDE4D8', fg: this.state.filter === label ? '#F7F3EE' : '#1F1A17', select: () => this.setState({ filter: label }) })),
+      stories: STORIES.filter(s => this.state.filter === 'All' || s.cat === this.state.filter),
+      shoot: this.state.shoot, setShoot: e => this.setState({ shoot: e.target.value }),
+      sent: this.state.sent, notSent: !this.state.sent,
+      submit: e => { e.preventDefault(); this.setState({ sent: true }); },
+      showSticky: !!(sticky && st), stickyLabel: st ? st[0] : '', stickyAction: () => st && this.go('Contact', st[1])
+    };
+  }
+}
+</script>
+</body>
+</html>

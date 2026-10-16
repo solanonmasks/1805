@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Contact | 1805 Photography</title>
+<meta name="description" content="Inquire about your wedding, engagement, proposal, maternity or family session with 1805 Photography in Surrey, Vancouver and the Fraser Valley. Replies within 24 to 48 hours.">
+<meta property="og:title" content="Contact | 1805 Photography">
+<meta property="og:description" content="Inquire about your wedding, engagement, proposal, maternity or family session with 1805 Photography in Surrey, Vancouver and the Fraser Valley. Replies within 24 to 48 hours.">
+<meta property="og:image" content="https://images-pw.pixieset.com/site/2k8eLx/6AbZEj/DSCF6442-Copy1-401be279-1500.jpg">
+<meta property="og:type" content="website">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Instrument+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+<a class="skip-link" href="#main">Skip to content</a>
+
+<header class="site-header">
+  <a class="logo" href="index.html" aria-label="1805 Photography home">
+    <span class="logo__mark">1805</span><span class="logo__word">Photography</span>
+  </a>
+  <nav class="site-nav" aria-label="Main">
+    <a href="weddings.html">Weddings</a>
+    <a href="engagements-proposals.html">Engagements</a>
+    <a href="maternity-family.html">Maternity &amp; Family</a>
+    <a href="stories.html">Stories</a>
+    <a href="about.html">About</a>
+    <a class="btn" href="contact.html">Inquire</a>
+  </nav>
+</header>
+
+<main id="main">
+
+  <section class="hero hero--contact">
+    <img src="https://images-pw.pixieset.com/site/2k8eLx/6AbZEj/DSCF6442-Copy1-401be279-1500.jpg" alt="Black and white photo of a couple in an arched doorway" fetchpriority="high">
+    <div class="hero__scrim"></div>
+    <div class="hero__content">
+      <div class="eyebrow">Let's begin your story together</div>
+      <h1 class="h1">Contact me</h1>
+      <p class="subhead">The good stuff starts here. From wedding days to growing families, documenting your story in Vancouver and wherever life takes you.</p>
+    </div>
+  </section>
+
+  <section class="contact">
+    <div class="contact__main">
+      <p class="contact__lead">I reply to every inquiry within 24 to 48 hours.</p>
+
+      <div class="thanks" data-thanks hidden>
+        <div class="thanks__title">Thank you. Your message is in.</div>
+        <div class="thanks__body">I'll be in touch within 24 to 48 hours with availability.</div>
+      </div>
+
+      <!-- The form is set up for Netlify Forms (data-netlify). Submissions show up in
+           the Netlify dashboard and can be emailed to Manmeet from there.
+           To use Formspree instead: remove data-netlify and set action="https://formspree.io/f/YOUR_ID". -->
+      <form class="form" name="inquiry" method="POST" action="/" data-netlify="true" netlify-honeypot="bot-field" data-contact-form>
+        <input type="hidden" name="form-name" value="inquiry">
+        <p class="form-hidden"><label>Don't fill this out: <input name="bot-field"></label></p>
+        <label>Full name<input required type="text" name="name" autocomplete="name"></label>
+        <label>Email<input required type="email" name="email" autocomplete="email"></label>
+        <label>Phone number<input type="tel" name="phone" autocomplete="tel"></label>
+        <label>Instagram handle (optional)<input type="text" name="instagram" placeholder="@"></label>
+        <label>Event or session date<input type="date" name="date"></label>
+        <label>Type of shoot
+          <select name="type">
+            <option>Wedding</option>
+            <option>Engagement</option>
+            <option>Proposal</option>
+            <option>Maternity</option>
+            <option>Family</option>
+            <option>Holiday Minis</option>
+            <option>Other</option>
+          </select>
+        </label>
+        <label class="full">Tell me about your day<textarea name="message" rows="6"></textarea></label>
+        <button class="btn" type="submit">Send message</button>
+      </form>
+      <p class="form-error" data-form-error hidden>Sorry, your message didn't send. Please try again, or message me on Instagram at @1805.photography.</p>
+
+      <p class="contact__note">A signed contract and non-refundable deposit confirm your date. Dates are first come, first served, and summer weddings book early.</p>
+    </div>
+
+    <aside class="contact__side">
+      <!-- TODO: put the real email and phone in both the text and the href -->
+      <div class="contact__item"><div class="fact__label">Email</div><a class="contact__value" href="mailto:hello@1805photography.com">Email TBC</a></div>
+      <div class="contact__item"><div class="fact__label">Phone or WhatsApp</div><span class="contact__value">Phone TBC</span></div>
+      <div class="contact__item"><div class="fact__label">Instagram</div><a class="contact__value" href="https://www.instagram.com/1805.photography" target="_blank" rel="noopener">@1805.photography</a></div>
+      <div class="contact__item"><div class="fact__label">Studio</div><div class="contact__value">Surrey, BC</div></div>
+    </aside>
+  </section>
+
+</main>
+
+<footer class="site-footer">
+  <div class="footer-cols">
+    <div class="footer-brand">
+      <div class="logo"><span class="logo__mark">1805</span><span class="logo__word">Photography</span></div>
+      <p>Surrey and the Fraser Valley, serving Metro Vancouver and destinations worldwide.</p>
+    </div>
+    <nav class="footer-col" aria-label="Footer">
+      <div class="eyebrow">Explore</div>
+      <a href="weddings.html">Weddings</a>
+      <a href="engagements-proposals.html">Engagements</a>
+      <a href="maternity-family.html">Maternity &amp; Family</a>
+      <a href="stories.html">Stories</a>
+      <a href="about.html">About</a>
+    </nav>
+    <div class="footer-col">
+      <div class="eyebrow">Contact</div>
+      <span>Email TBC</span>
+      <span>Phone TBC</span>
+      <a class="underline" href="contact.html">Send an inquiry</a>
+    </div>
+    <div class="footer-col">
+      <div class="eyebrow">Instagram</div>
+      <a href="https://www.instagram.com/1805.photography" target="_blank" rel="noopener">@1805.photography</a>
+    </div>
+  </div>
+  <div class="copyright">© 2026 1805 Photography. All rights reserved.</div>
+</footer>
+
+<script src="js/main.js"></script>
+</body>
+</html>
